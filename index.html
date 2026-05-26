@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%236366F1'/><text x='50' y='68' font-family='Arial,sans-serif' font-size='56' font-weight='bold' fill='white' text-anchor='middle'>V</text></svg>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#6366F1">
+  <title>Word Counter - Free Online Word & Character Count Tool</title>
+  <meta name="description" content="Free online word counter tool. Count words, characters, sentences, paragraphs, and estimate reading time. No signup required.">
+  <meta name="keywords" content="word counter, character counter, text analysis, word count tool, reading time calculator">
+  <link rel="canonical" href="https://github.com/gqc58/word-counter">
+  <meta property="og:title" content="Word Counter - Free Online Word Count Tool">
+  <meta property="og:description" content="Count words, characters, sentences, paragraphs and estimate reading time. No signup required.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8fafc;color:#1e293b;line-height:1.6}.container{max-width:960px;margin:0 auto;padding:2rem 1rem}.header{text-align:center;margin-bottom:2rem}.header h1{font-size:1.75rem;color:#6366F1;margin-bottom:.5rem}.header p{color:#64748b;font-size:.95rem}.badge{display:inline-block;background:#6366F1;color:#fff;padding:.15rem .6rem;border-radius:9999px;font-size:.75rem;margin-bottom:.5rem;text-decoration:none}
+    textarea{width:100%;min-height:200px;padding:1rem;border:1px solid #e2e8f0;border-radius:.5rem;font-size:1rem;resize:vertical;background:#fff;color:#1e293b;line-height:1.7}textarea:focus{outline:none;border-color:#6366F1;box-shadow:0 0 0 3px rgba(99,102,241,.1)}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-top:1.5rem}.stat-card{background:#fff;border:1px solid #e2e8f0;border-radius:.75rem;padding:1.25rem;text-align:center}.stat-value{font-size:2rem;font-weight:700;color:#6366F1}.stat-label{font-size:.8rem;color:#64748b;margin-top:.25rem;text-transform:uppercase;letter-spacing:.05em}
+    .word-freq{margin-top:1.5rem}.word-freq h3{font-size:.95rem;color:#475569;margin-bottom:.75rem}.freq-tags{display:flex;flex-wrap:wrap;gap:.5rem}.freq-tag{display:inline-block;background:#eef2ff;color:#4338ca;padding:.35rem .75rem;border-radius:9999px;font-size:.85rem}.freq-tag strong{color:#6366F1}
+    .footer{text-align:center;margin-top:3rem;padding:1.5rem;color:#94a3b8;font-size:.8rem;border-top:1px solid #e2e8f0}.footer a{color:#6366F1;text-decoration:none}.footer a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <a href="https://vaultool.com" class="badge">🌐 Vaultool</a>
+      <h1>📝 Word Counter</h1>
+      <p>Count words, characters, sentences, paragraphs and estimate reading time instantly.</p>
+    </div>
+    <textarea id="textInput" placeholder="Type or paste your text here..." rows="8"></textarea>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-value" id="charCount">0</div><div class="stat-label">Characters</div></div>
+      <div class="stat-card"><div class="stat-value" id="charNoSpaceCount">0</div><div class="stat-label">Chars (no spaces)</div></div>
+      <div class="stat-card"><div class="stat-value" id="wordCount">0</div><div class="stat-label">Words</div></div>
+      <div class="stat-card"><div class="stat-value" id="sentenceCount">0</div><div class="stat-label">Sentences</div></div>
+      <div class="stat-card"><div class="stat-value" id="paragraphCount">0</div><div class="stat-label">Paragraphs</div></div>
+      <div class="stat-card"><div class="stat-value" id="readingTime">0</div><div class="stat-label">Reading Time (min)</div></div>
+    </div>
+    <div class="word-freq" id="wordFreqSection" style="display:none">
+      <h3>Top Words (Frequency)</h3>
+      <div class="freq-tags" id="freqTags"></div>
+    </div>
+    <div class="footer">
+      <p>Free &amp; open source — <a href="https://vaultool.com">Try 30+ more free tools at Vaultool</a></p>
+    </div>
+  </div>
+  <script>
+  (function() {
+    const input = document.getElementById('textInput');
+    const charCountEl = document.getElementById('charCount');
+    const charNoSpaceEl = document.getElementById('charNoSpaceCount');
+    const wordCountEl = document.getElementById('wordCount');
+    const sentenceEl = document.getElementById('sentenceCount');
+    const paragraphEl = document.getElementById('paragraphCount');
+    const readingTimeEl = document.getElementById('readingTime');
+    const freqSection = document.getElementById('wordFreqSection');
+    const freqTags = document.getElementById('freqTags');
+    const STOP_WORDS = new Set(['the','be','to','of','and','a','in','that','have','i','it','for','not','on','with','he','as','you','do','at','this','but','his','by','from','they','we','her','she','or','an','will','my','one','all','would','there','their','what','so','up','out','if','about','who','get','which','go','me','when','make','can','like','time','no','just','him','know','take','people','into','year','your','good','some','could','them','see','other','than','then','now','look','only','come','its','over','think','also','back','after','use','two','how','our','work','first','well','way','even','new','want','because','any','these','give','day','most','us','is','are','was','were','been','being','had','has','did','does','doing','am','shall','should','may','might','must','need','very','still','much','more','each','every','own','same','both','few','many','such','before','through','during','between','under','above','again','here','where','why','while','too','down','off','nor','yet']);
+
+    function update() {
+      const text = input.value;
+      charCountEl.textContent = text.length;
+      charNoSpaceEl.textContent = text.replace(/\s/g, '').length;
+      const words = text.trim() ? text.trim().split(/\s+/).filter(w => w.length > 0) : [];
+      wordCountEl.textContent = words.length;
+      const sentences = text.trim() ? text.split(/[.!?。！？]+/).filter(s => s.trim().length > 0) : [];
+      sentenceEl.textContent = sentences.length;
+      const paragraphs = text.trim() ? (text.split(/\n\s*\n/).filter(p => p.trim().length > 0).length || 1) : 0;
+      paragraphEl.textContent = paragraphs;
+      readingTimeEl.textContent = Math.max(0, Math.ceil(words.length / 200));
+
+      const freq = getWordFrequency(text);
+      if (freq.length > 0) {
+        freqSection.style.display = '';
+        freqTags.innerHTML = freq.map(([w,c]) => '<span class="freq-tag">'+w+' <strong>'+c+'</strong></span>').join('');
+      } else { freqSection.style.display = 'none'; }
+    }
+    function getWordFrequency(text) {
+      if (!text.trim()) return [];
+      const words = text.toLowerCase().replace(/[^a-zA-Z\u4e00-\u9fff\s'-]/g,'').split(/\s+/).filter(w => w.length > 1 && !STOP_WORDS.has(w));
+      const f = {}; words.forEach(w => { f[w] = (f[w]||0) + 1; });
+      return Object.entries(f).sort((a,b) => b[1]-a[1]).slice(0,15);
+    }
+    input.addEventListener('input', update);
+    update();
+  })();
+  </script>
+</body>
+</html>
